@@ -1,0 +1,27 @@
+<div>
+  g <p>Nome: {{evento.name}}</p>
+  <p>Data: {{evento.date}}</p>
+  <p>Hora: {{evento.time}}</p>
+  <p>Local: {{evento.location.address}}</p>
+  <p>Cidade: {{evento.location.city}}</p>
+  <p>País: {{evento.location.country}}</p>
+</div>
+
+<!-- After -->
+<div class="grid">
+  <div class="card" *ngFor="let event of eventos">
+    <h2>Parabéns!</h2>
+    <h5>Seu componente está sendo exibido em tela</h5>
+    <hr>
+    <h5>Como aparece o seu evento abaixo?</h5>
+
+    <div style="margin-top:30px">Evento: {{event.name}}</div>
+    <div>Data: <app-datas[data]= "event.date"></app-datas></div>
+    <div>Hora: {{event.time}}</div>
+    <ng-container *ngIf="event.location !== undefined">
+      <app-address [location]="event.location" [nome]="event.name" (atualizarEndereco)="atualizarAddress($event)">
+      </app-address>
+    </ng-container>
+    <a href='{{event.onlineUrl}}'>Link</a>
+  </div>
+</div>
